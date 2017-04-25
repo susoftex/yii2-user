@@ -1,0 +1,21 @@
+{
+    "name": "yii-ext/yii2-user",
+    "description": "YII2 User Extension",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","user"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Yuriy Basov",
+            "email": "basowy@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "\\yiiext\\user\\": ""
+        }
+    }
+}
