@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist yii-ext/yii2-user "*"
+php composer.phar require --prefer-dist susoftex/yii2-user "dev-master"
 ```
 
 or add
 
 ```
-"yii-ext/yii2-user": "*"
+"susoftex/yii2-user": "dev-master"
 ```
 
 to the require section of your `composer.json` file.
