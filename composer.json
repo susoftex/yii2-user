@@ -10,9 +10,19 @@
             "email": "basowy@gmail.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/yii-ext/yii2-user/issues",
+        "source": "https://github.com/yii-ext/yii2-user"
+    },    
     "require": {
         "yiisoft/yii2": "~2.0.0"
     },
+    "repositories":[
+        {
+            "type": "git",
+            "url": "https://github.com/yii-ext/yii2-user"
+        }
+    ],    
     "autoload": {
         "psr-4": {
             "\\yiiext\\user\\": ""
