@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiext\user\controllers;
+namespace yii2x\user\controllers;
 
 use yii\web\Controller;
 

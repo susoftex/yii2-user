@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiext\user;
+namespace yii2x\user;
 
 /**
  * user module definition class
@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'yiiext\user\controllers';
+    public $controllerNamespace = 'yii2x\user\controllers';
 
     /**
      * @inheritdoc

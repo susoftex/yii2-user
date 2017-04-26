@@ -1,6 +1,6 @@
 <?php
 
-namespace \yiiext\user;
+namespace \yii2x\user;
 
 /**
  * This is just an example.

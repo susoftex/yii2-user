@@ -1,5 +1,5 @@
 {
-    "name": "susoftex/yii2-user",
+    "name": "yii2x/yii2-user",
     "description": "YII2 User Extension",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","user"],
@@ -11,8 +11,8 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/susoftex/yii2-user/issues",
-        "source": "https://github.com/susoftex/yii2-user"
+        "issues": "https://github.com/yii2x/yii2-user/issues",
+        "source": "https://github.com/yii2x/yii2-user"
     },    
     "require": {
         "yiisoft/yii2": "~2.0.0"
@@ -20,12 +20,12 @@
     "repositories":[
         {
             "type": "git",
-            "url": "https://github.com/susoftex/yii2-user"
+            "url": "https://github.com/yii2x/yii2-user"
         }
     ],    
     "autoload": {
         "psr-4": {
-            "\\yiiext\\user\\": ""
+            "\\yii2x\\user\\": ""
         }
     }
 }

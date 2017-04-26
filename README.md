@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist susoftex/yii2-user "dev-master"
+php composer.phar require --prefer-dist yii2x/yii2-user "dev-master"
 ```
 
 or add
 
 ```
-"susoftex/yii2-user": "dev-master"
+"yii2x/yii2-user": "dev-master"
 ```
 
 to the require section of your `composer.json` file.
@@ -29,4 +29,4 @@ Once the extension is installed, simply use it in your code by  :
 
 Under Development
 ```php
-<?= \\yiiext\user\AutoloadExample::widget(); ?>```
+<?= \\yii2x\user\AutoloadExample::widget(); ?>```

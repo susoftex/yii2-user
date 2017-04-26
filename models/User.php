@@ -1,6 +1,6 @@
 <?php
 
-namespace yiiext\user\models;
+namespace yii2x\user\models;
 
 use Yii;
 
