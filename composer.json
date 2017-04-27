@@ -25,7 +25,10 @@
     ],    
     "autoload": {
         "psr-4": {
-            "\\yii2x\\user\\": ""
+            "yii2x\\user\\": ""
         }
-    }
+    }, 
+    "extra": {
+        "bootstrap": "yii2x\\user\\Bootstrap"
+    }    
 }
