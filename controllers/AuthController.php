@@ -39,7 +39,17 @@ class AuthController extends Controller
             'registration' => [
                 'class' => '\yii2x\user\actions\RegistrationAction',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/registration'
-            ],              
+            ],   
+            
+            'confirmation' => [
+                'class' => '\yii2x\user\actions\ConfirmationAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/message'
+            ],      
+            
+            'confirmation_resend' => [
+                'class' => '\yii2x\user\actions\ConfirmationResendAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/confirmation_resend'
+            ],             
         ];
     }
 }

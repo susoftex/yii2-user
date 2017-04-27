@@ -7,7 +7,8 @@
 namespace yii2x\user\actions;
 
 use Yii;
-use \yii\base\Action;
+use yii\base\Action;
+
 
 class RegistrationAction extends Action
 {
@@ -16,8 +17,8 @@ class RegistrationAction extends Action
     public function run()
     {
         
-        if(\Yii::$app->user->isGuest == false){
-            \Yii::$app->user->logout();
+        if(Yii::$app->user->isGuest == false){
+            Yii::$app->user->logout();
             return $this->controller->refresh();
         }
         
@@ -27,11 +28,15 @@ class RegistrationAction extends Action
         
         if ($model->load(Yii::$app->request->post())) { 
 
-            if($model->validate()){                
-                return $this->controller->redirect(\Yii::$app->user->loginUrl);                
-            }
-            else{
-                \Yii::$app->session->setFlash('failure', Yii::t('app', 'User is not created.'));
+            if($model->validate()){
+                if($model->register() && $model->initConfirmation()){
+                    Yii::$app->session->setFlash('success', Yii::t('app', 'Confirmation email sent to') . ' ' . $model->_user->email);
+                    return $this->controller->redirect(Yii::$app->user->loginUrl);                     
+                }
+                else{
+                    Yii::$app->session->setFlash('failure', Yii::t('app', 'User is not registered.'));
+                }
+                
             }
         } 
       

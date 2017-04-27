@@ -6,21 +6,12 @@
 
 namespace yii2x\user\behaviors;
 
-use Yii;
 use yii\base\Behavior;
-use yii\db\BaseActiveRecord;
 use yii2x\user\models\User;
 
 class RegistrationBehavior extends Behavior
 {
-    public function events()
-    {
-        return [
-            BaseActiveRecord::EVENT_AFTER_VALIDATE => 'onAfterValidate',
-        ];
-    } 
-
-    public function onAfterValidate($event){
+    public function register(){
 
         if($this->owner->hasErrors() == false){
 

@@ -7,8 +7,9 @@
 namespace yii2x\user\actions;
 
 use Yii;
+use yii\base\Action;
 
-class LogoutAction extends \yii\base\Action
+class LogoutAction extends Action
 {
     public function run()
     {

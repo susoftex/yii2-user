@@ -7,8 +7,9 @@
 namespace yii2x\user\actions;
 
 use Yii;
+use yii\base\Action;
 
-class LoginAction extends \yii\base\Action
+class LoginAction extends Action
 {
     public $view = '@vendor/yii2x/yii2-user/views/auth/login';
     

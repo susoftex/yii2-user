@@ -8,21 +8,13 @@ namespace yii2x\user\behaviors;
 
 use Yii;
 use yii\base\Behavior;
-use yii\db\BaseActiveRecord;
 use yii\db\Expression;
 use yii\helpers\Url;
 
 class RegistrationConfirmationBehavior extends Behavior
 {
 
-    public function events()
-    {
-        return [
-            BaseActiveRecord::EVENT_AFTER_VALIDATE => 'onAfterValidate',
-        ];
-    } 
-
-    public function onAfterValidate($event){
+    public function initConfirmation(){
 
         if(!empty($this->owner->_user->id)){
 
@@ -36,17 +28,13 @@ class RegistrationConfirmationBehavior extends Behavior
             
             $data = ['url' => Url::to(['/auth/confirmation', 'token' => $this->owner->_user->confirm_token], true)];
             
-            if($mailer->compose(['html' => 'html/confirmation', 'text' => 'text/confirmation'], $data)
+            return $mailer->compose(['html' => 'html/confirmation', 'text' => 'text/confirmation'], $data)
                             ->setTo($this->owner->email)
                             ->setFrom(\Yii::$app->params['adminEmail'])
-                            ->setSubject('Registration Confirmation at ' . \Yii::$app->name)
-                            ->send()){
-                
-                Yii::$app->session->setFlash('success', \Yii::t('app', 'Confirmation email sent to') . ' ' . $this->owner->email);
-            }                   
-            else{
-                Yii::$app->session->setFlash('failure', \Yii::t('app', 'Confirmation email is not sent to') . ' ' . $this->owner->email);
-            }
+                            ->setSubject('Registration Confirmation at ' . Yii::$app->name)
+                            ->send();
         }
+        
+        return false;
     }     
 }
