@@ -1,18 +1,22 @@
 <?php
+/**
+ * @author Yuriy Basov <basowy@gmail.com>
+ * @since 1.0.0
+ */
+
 namespace yii2x\user\actions;
 
 use Yii;
 
 class LoginAction extends \yii\base\Action
 {
-    public $viewFile = '@vendor/yii2x/yii2-user/views/login';
+    public $viewFile = '@vendor/yii2x/yii2-user/views/auth/login';
     public function run()
     {
         if (!Yii::$app->user->isGuest) {
             return $this->controller->goHome();
         }
 
-        $module = $this->controller->module;
         $model = Yii::createObject([
             'class' => '\yii2x\user\models\LoginForm'
         ]);

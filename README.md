@@ -1,4 +1,4 @@
-YII2 User Extension
+YII2 User Extension - Under Development
 ===================
 YII2 User Extension
 
@@ -27,6 +27,5 @@ Usage
 
 Once the extension is installed, simply use it in your code by  :
 
-Under Development
 ```php
 <?= \\yii2x\user\AutoloadExample::widget(); ?>```

@@ -27,8 +27,5 @@
         "psr-4": {
             "yii2x\\user\\": ""
         }
-    }, 
-    "extra": {
-        "bootstrap": "yii2x\\user\\Bootstrap"
-    }    
+    }
 }

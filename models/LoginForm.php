@@ -1,26 +1,23 @@
 <?php
+/**
+ * @author Yuriy Basov <basowy@gmail.com>
+ * @since 1.0.0
+ */
+
 namespace yii2x\user\models;
 
 use Yii;
 use yii\base\Model;
 
-/**
- * LoginForm get user's login and password, validates them and logs the user in. 
- *
- * @author John Martin <john.itvn@gmail.com>
- * @since 1.0.0
- */
 class LoginForm extends Model{
     
-    /** @var string The login field*/
+    /** @var string The username field*/
     public $username;
-    
-    public $email;
 
-    /** @var string User's plain password */
+    /** @var string password */
     public $password;
 
-    /** @var string Whether to remember the user */
+    /** @var string whether to remember the user */
     public $rememberMe = false;
 
     private $_user = false;
@@ -29,10 +26,9 @@ class LoginForm extends Model{
     public function attributeLabels()
     {
         return [
-            'username'            => Yii::t('user', 'Username'),
-            'email'            => Yii::t('user', 'Email'),
-            'password'         => Yii::t('user', 'Password'),
-            'rememberMe'       => Yii::t('user', 'Remember me next time'),
+            'username'            => Yii::t('app', 'Username'),
+            'password'         => Yii::t('app', 'Password'),
+            'rememberMe'       => Yii::t('app', 'Remember me next time'),
         ];
     }
 
@@ -48,14 +44,11 @@ class LoginForm extends Model{
     {
         return [
 
-            [['username', 'email'], 'trim'],
-            ['email', 'email'],
+            [['username'], 'trim'],
             
-            ['username', 'required', 'on' => 'default'],
-            ['password', 'required', 'on' => 'default'],
+            ['username', 'required'],
+            ['password', 'required'],
             
-            ['email', 'required', 'on' => 'EmailLoginScenario'],
-            ['password', 'required', 'on' => 'EmailLoginScenario'],
                      
             ['password', 'validatePassword'],                             
             ['rememberMe', 'boolean'],          
@@ -98,7 +91,7 @@ class LoginForm extends Model{
     }
     
     /**
-     * Finds user by loginFieldName
+     * Finds user by username
      *
      * @return User|null
      */
@@ -106,15 +99,9 @@ class LoginForm extends Model{
     {
         if ($this->_user === false) {
 
-            $loginFieldName = Yii::$app->controller->module->getLoginFieldName();
             $this->_user = \yii2x\user\models\User::find()->where([
-                $loginFieldName => $this->username
+                'username' => $this->username
             ])->one();
-        }
-
-        
-        if($this->_user){
-            $this->_user->setScenario('EmailLoginScenario');
         }
         
         return $this->_user;
