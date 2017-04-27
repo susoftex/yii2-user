@@ -25,7 +25,25 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Once the extension is installed, simply use it in your code by configuring application controller map and url manager :
 
 ```php
-<?= \\yii2x\user\AutoloadExample::widget(); ?>```
+
+    'components' => [
+        ...
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'enableStrictParsing' => false,
+            'showScriptName' => false,
+            'rules' => [
+                '/login' => '/auth/login',
+                '/logout' => '/auth/logout',
+                ...
+            ]
+        ],
+        ...
+    ],
+
+    'controllerMap' => [
+        'auth' => '\yii2x\user\controllers\AuthController'
+    ],
