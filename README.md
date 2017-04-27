@@ -93,3 +93,12 @@ use yii2x\user\widgets\LoginForm;
 
 
 ```
+
+Migrations
+----------
+
+```php
+
+yii migrate --migrationPath="vendor/yii2x/yii2-user/migrations"
+
+```
