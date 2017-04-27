@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist yii2x/yii2-user "dev-master"
+php composer.phar require --prefer-dist yii2x/yii2-user "*"
 ```
 
 or add
 
 ```
-"yii2x/yii2-user": "dev-master"
+"yii2x/yii2-user": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -47,3 +47,49 @@ Once the extension is installed, simply use it in your code by configuring appli
     'controllerMap' => [
         'auth' => '\yii2x\user\controllers\AuthController'
     ],
+
+```
+
+Controller and widgets.
+-------------------------------------------
+
+Controller:
+
+```php
+
+class AuthController extends Controller
+{
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+        return [
+            
+            'login' => [
+                'class' => '\yii2x\user\actions\LoginAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/login'
+            ],  
+            
+            'logout' => [
+                'class' => '\yii2x\user\actions\LogoutAction',
+            ],              
+        ];
+    }
+}
+```
+
+Widget:
+
+```php
+
+<?php
+use yii2x\user\widgets\LoginForm;
+?>
+
+<?= LoginForm::widget([
+    'model' => $model,
+]) ?>
+
+
+```

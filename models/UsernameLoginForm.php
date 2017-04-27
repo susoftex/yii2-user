@@ -9,7 +9,7 @@ namespace yii2x\user\models;
 use Yii;
 use yii\base\Model;
 
-class LoginForm extends Model{
+class UsernameLoginForm extends Model{
     
     /** @var string The username field*/
     public $username;

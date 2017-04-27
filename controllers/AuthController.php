@@ -21,7 +21,7 @@ class AuthController extends Controller
             
             'login' => [
                 'class' => '\yii2x\user\actions\LoginAction',
-                'viewFile' => '@vendor/yii2x/yii2-user/views/auth/login'
+                'view' => '@vendor/yii2x/yii2-user/views/auth/login'
             ],  
             
             'logout' => [
@@ -29,6 +29,4 @@ class AuthController extends Controller
             ],              
         ];
     }
-
-
 }

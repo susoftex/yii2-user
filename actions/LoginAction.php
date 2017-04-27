@@ -10,7 +10,8 @@ use Yii;
 
 class LoginAction extends \yii\base\Action
 {
-    public $viewFile = '@vendor/yii2x/yii2-user/views/auth/login';
+    public $view = '@vendor/yii2x/yii2-user/views/auth/login';
+    
     public function run()
     {
         if (!Yii::$app->user->isGuest) {
@@ -18,7 +19,7 @@ class LoginAction extends \yii\base\Action
         }
 
         $model = Yii::createObject([
-            'class' => '\yii2x\user\models\LoginForm'
+            'class' => '\yii2x\user\models\UsernameLoginForm'
         ]);
         
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
@@ -27,7 +28,7 @@ class LoginAction extends \yii\base\Action
  
         $model->password = null;
 
-        return $this->controller->render($this->viewFile, [
+        return $this->controller->render($this->view, [
             'model' => $model,
         ]); 
     }    
