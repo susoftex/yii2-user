@@ -8,6 +8,13 @@ namespace yii2x\user\models;
 
 use Yii;
 use yii\web\IdentityInterface;
+use yii\db\Expression;
+use yii\behaviors\TimestampBehavior;
+use yii\behaviors\BlameableBehavior;
+use yii\behaviors\SluggableBehavior;
+use yii2x\user\behaviors\IpAddressBlameableBehavior;
+use yii2x\user\behaviors\PasswordHashBehavior;
+
 /**
  * This is the model class for table "user".
  *
@@ -15,13 +22,26 @@ use yii\web\IdentityInterface;
  * @property string $username
  * @property string $password_hash
  * @property string $auth_key
- * @property string $created_at
+ * @property string $email
+ * @property string $slug
+ * @property string $title
+ * @property string $first
+ * @property string $last
+ * @property string $phone
+ * @property datetime $confirm_expired_at
+ * @property string $confirm_token
+ * @property datetime $created_at
  * @property int $created_by
- * @property string $updated_at
+ * @property string $created_ip
+ * @property datetime $updated_at
  * @property int $updated_by
+ * @property string $updated_ip
  */
+
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    public $password;
+    
     /**
      * @inheritdoc
      */
@@ -32,11 +52,51 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
 
     /**
      * @inheritdoc
+     */    
+    public function behaviors()
+    {
+        return [           
+
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+                'value' => new Expression('UTC_TIMESTAMP()'),
+            ],
+	    [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+                'value' => function($event){
+                    return $this->owner->id;
+                }
+            ],                  
+            [
+                'class' => SluggableBehavior::className(),
+                'attribute' => ['email'],
+                'slugAttribute' => 'slug'
+            ],     
+	    [
+                'class' => IpAddressBlameableBehavior::className(),
+                'createdIpAttribute' => 'created_ip',
+                'updatedIpAttribute' => 'updated_ip',
+            ],                     
+            [
+                'class' => PasswordHashBehavior::className(),
+            ],
+ 
+              
+        ];
+    }     
+    
+    
+    /**
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['created_at', 'updated_at'], 'safe'],
+            [['title', 'first', 'last', 'email', 'slug', 'phone', 'password', 'password_hash', 'auth_key', 'created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['username'], 'string', 'max' => 200],
             [['password_hash', 'auth_key'], 'string', 'max' => 255],
