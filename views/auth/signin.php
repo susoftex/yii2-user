@@ -7,7 +7,7 @@ use yii2x\user\widgets\Message;
 use yii2x\user\widgets\UsernameSigninForm;
 
 ?>
-
+<h1>Sign In</h1>
 <?= Message::widget(); ?>
 <?= UsernameSigninForm::widget([
     'model' => $model,

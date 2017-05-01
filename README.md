@@ -73,7 +73,7 @@ class AuthController extends Controller
             
             'signin' => [
                 'class' => '\yii2x\user\actions\SigninAction',
-                'view' => '@vendor/yii2x/yii2-user/views/auth/login'
+                'view' => '@vendor/yii2x/yii2-user/views/auth/signin'
             ],  
             
             'signout' => [

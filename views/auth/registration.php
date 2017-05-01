@@ -7,7 +7,7 @@ use yii2x\user\widgets\Message;
 use yii2x\user\widgets\RegistrationForm;
 
 ?>
-
+<h1>Registration</h1>
 <?= Message::widget(); ?>
 <?= RegistrationForm::widget([
     'model' => $model,

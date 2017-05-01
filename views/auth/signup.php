@@ -7,7 +7,7 @@ use yii2x\user\widgets\Message;
 use yii2x\user\widgets\EmailForm;
 
 ?>
-
+<h1>Sign Up</h1>
 <?= Message::widget(); ?>
 <?= EmailForm::widget([
     'model' => $model,
