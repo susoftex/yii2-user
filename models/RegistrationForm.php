@@ -8,13 +8,14 @@ namespace yii2x\user\models;
 
 use Yii;
 use yii\base\Model;
-use yii2x\user\behaviors\RegistrationBehavior;
-use yii2x\user\behaviors\RegistrationConfirmationBehavior;
 
 
 class RegistrationForm extends Model {
     
-
+    public $token;
+    
+    public $code; 
+    
     public $username;
 
     public $password;
@@ -31,30 +32,15 @@ class RegistrationForm extends Model {
     
     public $email;
         
-    public $_user;
-    
-    public function behaviors()
-    {
-        return [                     
-            [
-                'class' => RegistrationBehavior::className()
-            ],   
-            [
-                'class' => RegistrationConfirmationBehavior::className()
-            ],              
-        ];
-    }      
-    
-    
-    
     /**
      * @inheritdoc
      */
     public function rules()
     {       
         return [          
-            [['username', 'title', 'first', 'last', 'phone', 'email'], 'filter', 'filter' => 'trim'],
-            [['username', 'password', 'confirm_password', 'title', 'email', 'first', 'last'], 'required'],
+
+            [['token', 'username', 'title', 'first', 'last', 'phone', 'email'], 'filter', 'filter' => 'trim'],
+            [['token', 'username', 'password', 'confirm_password', 'title', 'email', 'first', 'last'], 'required'],
             [
                 'username',
                 'unique',
@@ -67,6 +53,7 @@ class RegistrationForm extends Model {
                 'targetClass' => 'yii2x\user\models\User',
                 'message' => Yii::t('app', 'Email already taken')
             ],
+         
             ['email', 'email'],            
             ['password', 'string', 'min' => 6],
             ['confirm_password', 'compare', 'compareAttribute'=>'password', 'message'=>Yii::t("app","Confirm Password doesn't match")],

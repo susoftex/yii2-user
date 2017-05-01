@@ -13,7 +13,7 @@ use yii\widgets\Pjax;
     Pjax::begin();
     ?>
                 <?php $form = ActiveForm::begin([
-                    'options' => ['data' => [ 'pjax' => true]],
+                 //   'options' => ['data' => [ 'pjax' => true]],
                     'id'                     => 'login-form',
                     'enableAjaxValidation'   => false,
                     'enableClientValidation' => false,
@@ -22,13 +22,12 @@ use yii\widgets\Pjax;
                     'validateOnChange'       => false,
                 ]) ?>
 
-
                 <?= $form->field($model, 'username', ['inputOptions' => ['autofocus' => 'autofocus', 'class' => 'form-control', 'tabindex' => '1']]) ?>
-                <?= $form->field($model, 'password', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '2']])->passwordInput(); ?>
-                <?= $form->field($model, 'rememberMe')->checkbox(['tabindex' => '4']) ?>
+
+                <?= $form->field($model, 'email', ['inputOptions' => ['class' => 'form-control', 'tabindex' => '1']]) ?>
 
 
-                <?= Html::submitButton('<i class="fa fa-fw fa-refresh fa-spin hidden"></i><span> '.Yii::t('app', 'Sign in') . '</span>', ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']) ?>
+                <?= Html::submitButton('<i class="fa fa-fw fa-refresh fa-spin hidden"></i><span> '.Yii::t('app', 'Submit') . '</span>', ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']) ?>
 
                 <?php ActiveForm::end(); ?>
     <?php

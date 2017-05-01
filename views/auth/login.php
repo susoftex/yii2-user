@@ -3,13 +3,13 @@
  * @author Yuriy Basov <basowy@gmail.com>
  * @since 1.0.0
  */
-
-use yii2x\user\widgets\UsernameLoginForm;
+use yii2x\user\widgets\Message;
+use yii2x\user\widgets\UsernameSigninForm;
 
 ?>
 
-
-<?= UsernameLoginForm::widget([
+<?= Message::widget(); ?>
+<?= UsernameSigninForm::widget([
     'model' => $model,
 ]) ?>
 

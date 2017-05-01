@@ -8,8 +8,9 @@ namespace yii2x\user\models;
 
 use Yii;
 use yii\base\Model;
+use yii2x\user\models\User;
 
-class UsernameLoginForm extends Model{
+class UsernameSigninForm extends Model{
     
     /** @var string The username field*/
     public $username;
@@ -67,10 +68,10 @@ class UsernameLoginForm extends Model{
         if (!$this->hasErrors()) {
             $user = $this->getUser();
 
-            if(!empty($user) && $user->confirm_token !== null){
-                $this->addError($attribute, 'User Account is not confirmed.');
+            if(!empty($user) && $user->token !== null){
+                $this->addError($attribute, 'User Account is suspended.');
             }             
-            elseif (!$user || !$user->validatePassword($this->password)) {
+            else if (!$user || !$user->validatePassword($this->password)) {
                 $this->addError($attribute, 'Incorrect username or password.');
             }
         }
@@ -85,7 +86,7 @@ class UsernameLoginForm extends Model{
     public function login()
     {
         if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->user->login($this->getUser(), 5);// 3600*24*30
         }
         return false;
     }
@@ -99,7 +100,7 @@ class UsernameLoginForm extends Model{
     {
         if ($this->_user === false) {
 
-            $this->_user = \yii2x\user\models\User::find()->where([
+            $this->_user = User::find()->where([
                 'username' => $this->username
             ])->one();
         }

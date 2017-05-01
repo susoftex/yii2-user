@@ -8,8 +8,9 @@ namespace yii2x\user\actions;
 
 use Yii;
 use yii\base\Action;
+use yii2x\user\models\UsernameSigninForm;
 
-class LoginAction extends Action
+class SigninAction extends Action
 {
     public $view = '@vendor/yii2x/yii2-user/views/auth/login';
     
@@ -19,9 +20,7 @@ class LoginAction extends Action
             return $this->controller->goHome();
         }
 
-        $model = Yii::createObject([
-            'class' => '\yii2x\user\models\UsernameLoginForm'
-        ]);
+        $model = new UsernameSigninForm();
         
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->controller->goBack();

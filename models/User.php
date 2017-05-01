@@ -14,6 +14,9 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
 use yii2x\user\behaviors\IpAddressBlameableBehavior;
 use yii2x\user\behaviors\PasswordHashBehavior;
+use yii2x\user\behaviors\ConfirmationBehavior;
+use yii2x\user\behaviors\AuthBehavior;
+
 
 /**
  * This is the model class for table "user".
@@ -28,14 +31,19 @@ use yii2x\user\behaviors\PasswordHashBehavior;
  * @property string $first
  * @property string $last
  * @property string $phone
- * @property datetime $confirm_expired_at
- * @property string $confirm_token
  * @property datetime $created_at
  * @property int $created_by
  * @property string $created_ip
  * @property datetime $updated_at
  * @property int $updated_by
  * @property string $updated_ip
+ * @property datetime $confirm_expired_at
+ * @property string $token
+ * @property string $confirmed_ip 
+ * @property string $confirmed_at
+ * @property datetime $rerification_expired_at
+ * @property string $rerification_token
+ * @property string $recovered_ip
  */
 
 class User extends \yii\db\ActiveRecord implements IdentityInterface
@@ -80,12 +88,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
                 'class' => IpAddressBlameableBehavior::className(),
                 'createdIpAttribute' => 'created_ip',
                 'updatedIpAttribute' => 'updated_ip',
-            ],                     
+            ],                      
             [
-                'class' => PasswordHashBehavior::className(),
-            ],
- 
-              
+                'class' => AuthBehavior::className(),
+            ],                        
         ];
     }     
     
@@ -96,6 +102,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            ['username', 'match', 'pattern' => '/^[-a-zA-Z0-9_\.@]+$/', 'message' => '{attribute} is invalid. Allowed characters [ - . _ @ a-z A-Z 0-9 ]'],
             [['title', 'first', 'last', 'email', 'slug', 'phone', 'password', 'password_hash', 'auth_key', 'created_at', 'updated_at'], 'safe'],
             [['created_by', 'updated_by'], 'integer'],
             [['username'], 'string', 'max' => 200],
@@ -119,6 +126,35 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
+    }
+    
+    public static function findByEmail($email){
+        return self::find()->where([
+            'email' => $email,
+        ])->one();        
+    }
+   
+    public static function findByUsernameEmail($username, $email){
+        return self::find()->where([
+            'username' => $username,
+            'email' => $email,
+        ])->one();        
+    }    
+    
+    public static function findByConfirmToken($token){
+        return self::find()->where([
+            'token' => $token
+        ])->andWhere([
+            '>', new Expression('TIMEDIFF(`token_expired_at`,UTC_TIMESTAMP())'), new Expression('TIME("00:00:00")')
+        ])->one();        
+    }    
+    
+    public static function findByToken($token){
+        return self::find()->where([
+            'token' => $token,
+        ])->andWhere([
+            '>', new Expression('TIMEDIFF(`token_expired_at`,UTC_TIMESTAMP())'), new Expression('TIME("00:00:00")')
+        ])->one();
     }
     
     
@@ -155,7 +191,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * The space of such keys should be big enough to defeat potential identity attacks.
      *
-     * This is required if [[User::enableAutoLogin]] is enabled.
+     * This is required if [[User::enableAutoSignin]] is enabled.
      * @return string a key that is used to check the validity of a given identity ID.
      * @see validateAuthKey()
      */
@@ -166,7 +202,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     /**
      * Validates the given auth key.
      *
-     * This is required if [[User::enableAutoLogin]] is enabled.
+     * This is required if [[User::enableAutoSignin]] is enabled.
      * @param string $authKey the given auth key
      * @return boolean whether the given auth key is valid.
      * @see getAuthKey()

@@ -27,28 +27,48 @@ class AuthController extends Controller
     {
         return [
             
-            'login' => [
-                'class' => '\yii2x\user\actions\LoginAction',
+            'signin' => [
+                'class' => '\yii2x\user\actions\SigninAction',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/login'
             ],  
             
-            'logout' => [
-                'class' => '\yii2x\user\actions\LogoutAction',
+            'signout' => [
+                'class' => '\yii2x\user\actions\SignoutAction',
             ],   
+        
+            'signup' => [
+                'class' => '\yii2x\user\actions\SignupAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/signup'
+            ],              
             
             'registration' => [
                 'class' => '\yii2x\user\actions\RegistrationAction',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/registration'
             ],   
+
+            'passwordrequest' => [
+                'class' => '\yii2x\user\actions\PasswordRequestAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/password_request'
+            ],   
             
-            'confirmation' => [
-                'class' => '\yii2x\user\actions\ConfirmationAction',
+            'passwordreset' => [
+                'class' => '\yii2x\user\actions\PasswordResetAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/password_reset'
+            ],   
+
+            'usernamerequest' => [
+                'class' => '\yii2x\user\actions\UsernameRequestAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/username_request'
+            ], 
+          
+            'usernameview' => [
+                'class' => '\yii2x\user\actions\UsernameViewAction',
+                'view' => '@vendor/yii2x/yii2-user/views/auth/username_view'
+            ],             
+            
+            'message' => [
+                'class' => '\yii2x\user\actions\MessageAction',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/message'
-            ],      
-            
-            'confirmation_resend' => [
-                'class' => '\yii2x\user\actions\ConfirmationResendAction',
-                'view' => '@vendor/yii2x/yii2-user/views/auth/confirmation_resend'
             ],             
         ];
     }

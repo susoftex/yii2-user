@@ -8,13 +8,16 @@ namespace yii2x\user\actions;
 
 use Yii;
 use yii\base\Action;
-
+use yii2x\user\models\Signup;
+use yii2x\user\models\User;
+use yii2x\user\models\RegistrationForm;
 
 class RegistrationAction extends Action
 {
     public $view = '@vendor/yii2x/yii2-user/views/auth/registration';
+       
     
-    public function run()
+    public function run($token)
     {
         
         if(Yii::$app->user->isGuest == false){
@@ -22,22 +25,32 @@ class RegistrationAction extends Action
             return $this->controller->refresh();
         }
         
-        $model = Yii::createObject([
-            'class' => '\yii2x\user\models\RegistrationForm'
-        ]);
+        $signup = Signup::findByToken($token);
+        if(empty($signup)){
+            Yii::$app->session->setFlash('failure', "Sign up request invalid or expired. Please try again later.");
+            return $this->controller->redirect(['auth/signup']);
+        }
         
-        if ($model->load(Yii::$app->request->post())) { 
+        
+        $model = new RegistrationForm();
+        $model->token = $token;
+        $model->email = $signup->email;
+        
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) { 
 
-            if($model->validate()){
-                if($model->register() && $model->initConfirmation()){
-                    Yii::$app->session->setFlash('success', Yii::t('app', 'Confirmation email sent to') . ' ' . $model->_user->email);
-                    return $this->controller->redirect(Yii::$app->user->loginUrl);                     
-                }
-                else{
-                    Yii::$app->session->setFlash('failure', Yii::t('app', 'User is not registered.'));
-                }
-                
+            $user = new User();
+  
+            if($user->load(['User'=>$model->getAttributes()]) && $user->save()){
+                $signup->delete();
+                $user->emailWelcome();
+                Yii::$app->session->setFlash('success', 'Thank you, registration is now completed.');
+                Yii::$app->user->login($user, 5);// 3600*24*30
+                return $this->controller->goHome();                    
             }
+            else{
+                $model->addErrors($user->getErrors());
+            }
+
         } 
       
         $model->password = 123123;

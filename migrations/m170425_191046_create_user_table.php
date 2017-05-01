@@ -33,11 +33,21 @@ class m170425_191046_create_user_table extends Migration
             'updated_at' => $this->datetime()->defaultValue(NULL),
             'updated_by' => $this->integer(20)->defaultValue(NULL),
             'updated_ip' => $this->string(64)->defaultValue(NULL),
-            'confirm_expired_at' => $this->datetime()->defaultValue(NULL),
-            'confirm_token' => $this->string(64)->defaultValue(NULL)->unique(),  
-            'confirmed_at' => $this->datetime()->defaultValue(NULL),
-            'confirmed_ip' => $this->string(64)->defaultValue(NULL),
+            'token' => $this->string(64)->defaultValue(NULL)->unique(),
+            'token_expired_at' => $this->datetime()->defaultValue(NULL),
+            'token_type' => $this->string(20)->defaultValue(NULL),
+            'token_code' => $this->string(20)->defaultValue(NULL)->unique(),                      
         ]);
+        
+        $this->createTable('signup', [
+            'id' => $this->primaryKey(20),
+            'email' => $this->string(200)->defaultValue(NULL)->unique(),
+            'token' => $this->string(64)->defaultValue(NULL)->unique(),
+            'created_at' => $this->datetime()->defaultValue(NULL),
+            'created_ip' => $this->string(64)->defaultValue(NULL),
+            'expired_at' => $this->datetime()->defaultValue(NULL),           
+        ]);        
+        
     }
 
     /**
@@ -46,5 +56,6 @@ class m170425_191046_create_user_table extends Migration
     public function down()
     {
         $this->dropTable('user');
+        $this->dropTable('signup');
     }
 }

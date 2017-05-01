@@ -8,12 +8,12 @@ namespace yii2x\user\widgets;
 
 use yii\base\Widget;
 
-class UsernameLoginForm extends Widget{
+class UsernameEmailForm extends Widget{
     
     public $model;
     
     public function run(){
-        return $this->render('UsernameLoginForm', [
+        return $this->render('UsernameEmailForm', [
             'model'         => $this->model
         ]);          
     }   

@@ -13,8 +13,8 @@ use yii\widgets\Pjax;
     Pjax::begin();
     ?>
                 <?php $form = ActiveForm::begin([
-                 //   'options' => ['data' => [ 'pjax' => true]],
-                    'id'                     => 'login-form',
+                  //  'options' => ['data' => [ 'pjax' => true]],
+                    'id'                     => 'rerification-form',
                     'enableAjaxValidation'   => false,
                     'enableClientValidation' => false,
                     'validateOnBlur'         => false,
@@ -22,6 +22,7 @@ use yii\widgets\Pjax;
                     'validateOnChange'       => false,
                 ]) ?>
 
+                <?= $form->field($model, 'verification_code') ?>
 
                 <?= $form->field($model, 'username') ?>
 
@@ -29,16 +30,7 @@ use yii\widgets\Pjax;
 
                 <?= $form->field($model, 'confirm_password')->passwordInput() ?>
 
-                <?= $form->field($model, 'title') ?>
-
-                <?= $form->field($model, 'first') ?>
-
-                <?= $form->field($model, 'last') ?>
-
-                <?= $form->field($model, 'phone') ?>
-
-
-                <?= Html::submitButton('<i class="fa fa-fw fa-refresh fa-spin hidden"></i><span> '.Yii::t('app', 'Sign up') . '</span>', ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']) ?>
+                <?= Html::submitButton('<i class="fa fa-fw fa-refresh fa-spin hidden"></i><span> '.Yii::t('app', 'Submit') . '</span>', ['class' => 'btn btn-primary btn-block', 'tabindex' => '3']) ?>
 
                 <?php ActiveForm::end(); ?>
     <?php

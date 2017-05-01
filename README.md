@@ -67,12 +67,12 @@ class AuthController extends Controller
         return [
             
             'login' => [
-                'class' => '\yii2x\user\actions\LoginAction',
+                'class' => '\yii2x\user\actions\SigninAction',
                 'view' => '@vendor/yii2x/yii2-user/views/auth/login'
             ],  
             
             'logout' => [
-                'class' => '\yii2x\user\actions\LogoutAction',
+                'class' => '\yii2x\user\actions\SignoutAction',
             ],              
         ];
     }
@@ -84,10 +84,10 @@ Widget:
 ```php
 
 <?php
-use yii2x\user\widgets\LoginForm;
+use yii2x\user\widgets\SigninForm;
 ?>
 
-<?= LoginForm::widget([
+<?= SigninForm::widget([
     'model' => $model,
 ]) ?>
 

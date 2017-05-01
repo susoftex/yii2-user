@@ -6,17 +6,16 @@
 
 namespace yii2x\user\actions;
 
-use Yii;
 use yii\base\Action;
 
-class LogoutAction extends Action
+class MessageAction extends Action
 {
+    public $view = '@vendor/yii2x/yii2-user/views/auth/message';
+       
+    
     public function run()
     {
-
-        Yii::$app->user->logout();
-        return $this->controller->goHome();
-        
+        return $this->controller->render($this->view);
     }    
 }
 

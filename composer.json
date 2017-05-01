@@ -1,7 +1,7 @@
 {
     "name": "yii2x/yii2-user",
     "description": "YII2 User Extension",
-    "type": "yii2-extension",
+    "type": "yii2-library",
     "keywords": ["yii2","extension","user"],
     "license": "BSD-3-Clause",
     "authors": [

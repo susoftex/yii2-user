@@ -4,11 +4,11 @@
  * @since 1.0.0
  */
 use yii2x\user\widgets\Message;
-use yii2x\user\widgets\RegistrationForm;
+use yii2x\user\widgets\PasswordResetForm;
 
 ?>
 
 <?= Message::widget(); ?>
-<?= RegistrationForm::widget([
+<?= PasswordResetForm::widget([
     'model' => $model,
 ]) ?>

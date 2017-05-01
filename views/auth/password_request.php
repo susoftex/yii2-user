@@ -4,11 +4,11 @@
  * @since 1.0.0
  */
 use yii2x\user\widgets\Message;
-use yii2x\user\widgets\RegistrationForm;
+use yii2x\user\widgets\UsernameEmailForm;
 
 ?>
 
 <?= Message::widget(); ?>
-<?= RegistrationForm::widget([
+<?= UsernameEmailForm::widget([
     'model' => $model,
 ]) ?>
