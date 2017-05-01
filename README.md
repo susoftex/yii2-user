@@ -36,8 +36,14 @@ Once the extension is installed, simply use it in your code by configuring appli
             'enableStrictParsing' => false,
             'showScriptName' => false,
             'rules' => [
-                '/login' => '/auth/login',
-                '/logout' => '/auth/logout',
+                '/signin'                   => '/auth/signin',
+                '/signout'                  => '/auth/signout',
+                '/signup'                   => '/auth/signup',
+                '/registration/<token>'     => '/auth/registration',
+                '/password-request'         => '/auth/passwordrequest',
+                '/password-reset/<token>'   => '/auth/passwordreset',
+                '/username-request'         => '/auth/usernamerequest',
+                '/username-view/<token>'    => '/auth/usernameview',
                 ...
             ]
         ],
@@ -49,19 +55,6 @@ Once the extension is installed, simply use it in your code by configuring appli
     ],
 
 ```
-Url Rules:
--------------------------------------------
-
-'/signin'                   => '/auth/signin',
-'/signout'                  => '/auth/signout',
-'/signup'                   => '/auth/signup',
-'/registration/<token>'     => '/auth/registration',
-'/password-request'         => '/auth/passwordrequest',
-'/password-reset/<token>'   => '/auth/passwordreset',
-'/username-request'         => '/auth/usernamerequest',
-'/username-view/<token>'    => '/auth/usernameview',
-
-
 
 Controller:
 -------------------------------------------
