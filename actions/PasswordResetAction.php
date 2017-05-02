@@ -14,6 +14,7 @@ use yii2x\user\models\PasswordResetForm;
 
 class PasswordResetAction extends Action
 {   
+    public $layout = null;
     public $view = '@vendor/yii2x/yii2-user/views/auth/password_reset';
     
     

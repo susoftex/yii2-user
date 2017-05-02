@@ -11,6 +11,7 @@ use yii\base\Action;
 
 class SignoutAction extends Action
 {
+    public $layout = null;
     public function run()
     {
 

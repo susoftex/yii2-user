@@ -10,6 +10,7 @@ use yii\base\Action;
 
 class MessageAction extends Action
 {
+    public $layout = null;
     public $view = '@vendor/yii2x/yii2-user/views/auth/message';
        
     

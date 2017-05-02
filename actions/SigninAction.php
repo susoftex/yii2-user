@@ -12,6 +12,7 @@ use yii2x\user\models\UsernameSigninForm;
 
 class SigninAction extends Action
 {
+    public $layout = null;
     public $view = '@vendor/yii2x/yii2-user/views/auth/signin';
     
     public function run()

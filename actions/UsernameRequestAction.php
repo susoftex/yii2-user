@@ -13,7 +13,7 @@ use yii2x\user\models\User;
 
 class UsernameRequestAction extends Action
 {
-    
+    public $layout = null;
     public $view = '@vendor/yii2x/yii2-user/views/auth/username_request';
     
     public function run()

@@ -13,12 +13,12 @@ use yii2x\user\models\User;
 
 class UsernameViewAction extends Action
 {
-    
+    public $layout = null;
     public $view = '@vendor/yii2x/yii2-user/views/auth/username_view';
     
     public function run($token)
     {
-
+        
         $model = new VerificationCodeForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) { 
             
