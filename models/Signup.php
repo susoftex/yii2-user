@@ -5,7 +5,7 @@ namespace yii2x\user\models;
 use Yii;
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
-use yii2x\user\behaviors\IpAddressBlameableBehavior;
+use yii2x\common\behaviors\IpAddressBlameableBehavior;
 use yii2x\user\behaviors\SignupBehavior;
 
 /**

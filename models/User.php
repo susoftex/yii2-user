@@ -12,7 +12,7 @@ use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\SluggableBehavior;
-use yii2x\user\behaviors\IpAddressBlameableBehavior;
+use yii2x\common\behaviors\IpAddressBlameableBehavior;
 use yii2x\user\behaviors\PasswordHashBehavior;
 use yii2x\user\behaviors\ConfirmationBehavior;
 use yii2x\user\behaviors\AuthBehavior;
