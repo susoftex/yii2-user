@@ -15,8 +15,7 @@
         "source": "https://github.com/yii2x/yii2-user"
     },    
     "require": {
-        "yiisoft/yii2": "~2.0.0",
-        "yii2x/yii2-common": "*"
+        "yiisoft/yii2": "~2.0.0"
     },
     "repositories":[
         {
