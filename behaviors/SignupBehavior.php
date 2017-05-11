@@ -28,7 +28,7 @@ class SignupBehavior extends Behavior
 
     public function emailSignup(){
         $mailer = Yii::$app->mailer;
-        $mailer->viewPath = '@yii2-user/mail/';
+        $mailer->viewPath = __DIR__ . '/../mail'; //'@yii2-user/mail/';
 
         
         $data = ['url' => Url::to(['/auth/registration', 'token' => $this->owner->token], true)];

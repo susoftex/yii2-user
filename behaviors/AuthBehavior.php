@@ -52,7 +52,7 @@ class AuthBehavior extends Behavior
 
     public function emailSignup(){
         $mailer = Yii::$app->mailer;
-        $mailer->viewPath = '@yii2-user/mail/';
+        $mailer->viewPath = __DIR__ . '/../mail';
 
         
         $data = ['url' => Url::to(['/auth/registration', 'token' => $this->token], true)];
@@ -128,7 +128,7 @@ class AuthBehavior extends Behavior
 
 
         $mailer = Yii::$app->mailer;
-        $mailer->viewPath = '@yii2-user/mail/';
+        $mailer->viewPath = __DIR__ . '/../mail';
 
         $data = ['model' => $user];
 
@@ -156,7 +156,7 @@ class AuthBehavior extends Behavior
         ];            
 
         $mailer = Yii::$app->mailer;
-        $mailer->viewPath = '@yii2-user/mail/';
+        $mailer->viewPath = __DIR__ . '/../mail';
 
 
         if($mailer->compose(['html' => 'html/username-request', 'text' => 'text/username-request'], $data)
@@ -189,7 +189,7 @@ class AuthBehavior extends Behavior
         ];            
 
         $mailer = Yii::$app->mailer;
-        $mailer->viewPath = '@yii2-user/mail/';
+        $mailer->viewPath = __DIR__ . '/../mail';
         
         if($mailer->compose(['html' => 'html/password-request', 'text' => 'text/password-request'], $data)
                             ->setTo($user->email)
@@ -211,7 +211,7 @@ class AuthBehavior extends Behavior
         
 
         $mailer = Yii::$app->mailer;
-        $mailer->viewPath = '@yii2-user/mail/';
+        $mailer->viewPath = __DIR__ . '/../mail';
         
         $data = [
             'url' => Url::to(['/auth/login'], true),
@@ -236,7 +236,7 @@ class AuthBehavior extends Behavior
         
 
         $mailer = Yii::$app->mailer;
-        $mailer->viewPath = '@yii2-user/mail/';
+        $mailer->viewPath = __DIR__ . '/../mail';
         
         $data = [
             'verification_code' => $user->token_code,
