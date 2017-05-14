@@ -11,5 +11,7 @@ use yii2x\user\widgets\UsernameSigninForm;
 <?= Message::widget(); ?>
 <?= UsernameSigninForm::widget([
     'model' => $model,
-]) ?>
+]);
+
+?>
 
